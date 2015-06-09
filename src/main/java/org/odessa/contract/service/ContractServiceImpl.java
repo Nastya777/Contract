@@ -23,6 +23,11 @@ public class ContractServiceImpl implements ContractService {
     public void addContract(Contract contract) {
         contractDAO.addContract(contract);
     }
+    
+    @Transactional
+	public Contract getContract(Integer id) {
+        return contractDAO.getContract(id);
+	}
  
     @Transactional
     public List<Contract> listContract() {
@@ -30,6 +35,11 @@ public class ContractServiceImpl implements ContractService {
         return contractDAO.listContract();
     }
  
+    @Transactional
+	public void updateContract(Contract contract) {
+		contractDAO.updateContract(contract);		
+	}
+    
     @Transactional
     public void removeContract(Integer id) {
         contractDAO.removeContract(id);

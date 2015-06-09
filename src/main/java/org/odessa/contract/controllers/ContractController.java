@@ -37,6 +37,7 @@ public class ContractController {
 	public String home() {
 		return "redirect:/index";
 	}
+	
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addContract(@ModelAttribute("contract") Contract contract,
@@ -47,11 +48,37 @@ public class ContractController {
 		nbu = new BigDecimal(nbu).setScale(2, RoundingMode.HALF_UP).doubleValue();
 		
 		contract.setSumma_nbu(nbu);
+		
 		contractService.addContract(contract);
 
 		return "redirect:/index";
 	}
+	
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+	public String showContact(@PathVariable("id") Integer id, 
+			Map<String, Object> map) {
+		Contract contract = contractService.getContract(id);
 
+		map.put("contract", contract);
+		
+        return "getContract";
+	}
+	
+	
+	/*@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public String editContract(@ModelAttribute("contract") Contract contract,
+			BindingResult result) {
+		
+		Double nbu = contract.getCurrency()*contract.getSumma();
+		nbu = new BigDecimal(nbu).setScale(2, RoundingMode.HALF_UP).doubleValue();
+		
+		contract.setSumma_nbu(nbu);
+		
+		contractService.updateContract(contract);
+
+		return "redirect:/index";
+	}*/
+	
 	@RequestMapping("/delete/{contractId}")
 	public String deleteContract(@PathVariable("contractId") Integer contractId) {
 

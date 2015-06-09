@@ -81,6 +81,7 @@ var iframe = '<ifra'+'me width="100" height="42" fram'+'eborder="0" src="http://
 			<th>Курс доллара</th>
 			<th>Сумма UAH</th>
 			<th>&nbsp;</th>
+			<th>&nbsp;</th>
 		</tr>
 		<c:forEach items="${contractList}" var="contract">
 			<tr>
@@ -92,6 +93,7 @@ var iframe = '<ifra'+'me width="100" height="42" fram'+'eborder="0" src="http://
 				<td>${contract.currency}</td>
 				<td style="text-align:right;">${contract.summa_nbu}</td>
 				<td><a href="delete/${contract.id}"><spring:message code="label.delete" /></a></td>
+				<td><a href="get/${contract.id}">Редактировать</a></td>
 				<script type="text/javascript">
     				value +=${contract.summa_nbu};
   				</script>
@@ -106,7 +108,7 @@ var iframe = '<ifra'+'me width="100" height="42" fram'+'eborder="0" src="http://
 				<td></td>
 				<td style="text-align:right;"><span style='color:blue; font-weight:bold;' id='itog'></span></td>
 				<td></td>
-				
+				<td></td>
 			</tr>
 	</table>
 </c:if>

@@ -17,12 +17,22 @@ public class ContractDAOImpl implements ContractDAO {
 		sessionFactory.getCurrentSession().save(contract);
 	}
 
+	public Contract getContract(Integer id) {
+		Contract contract = (Contract) sessionFactory.getCurrentSession().get(Contract.class, id);    	
+		return contract;
+    }
+	
 	@SuppressWarnings("unchecked")
 	public List<Contract> listContract() {
 
 		return sessionFactory.getCurrentSession().createQuery("from Contract")
 			.list();
 	}
+	
+	public void updateContract(Contract contract) {
+		sessionFactory.getCurrentSession().merge(contract);
+	}
+
 	
 	public void removeContract(Integer id) {
 		Contract contract = (Contract) sessionFactory.getCurrentSession().load(
