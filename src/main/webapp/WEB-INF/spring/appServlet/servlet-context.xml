@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: определяет настройки одного сервлета; бины, 
+		которые доступны только ему -->
+
+	<!-- Разрешаем использование аннотаций Spring MVC (то есть @Controller и.т.д) -->
+	<mvc:annotation-driven />
+
+	<!-- Всю статику (изображения, css-файлы, javascript) положим в папку webapp/resources 
+		и замаппим их на урл вида /resources/** -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
+	<context:component-scan base-package="org.odessa.tecom" />
+
+
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<bean id="viewJspResolver" 	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	 	<property name="order" value="2"/>
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+ 	<bean id="viewPDFResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="order" value="1"/>
+        <property name="basename" value="views"/>
+    </bean>
+	<!-- Отображение видов на jsp-файлы, лежащие в папке /WEB-INF/views -->
+	
+
+	<!-- Файл с настройками контроллеров -->
+	<import resource="controllers.xml" />
+
+</beans>
