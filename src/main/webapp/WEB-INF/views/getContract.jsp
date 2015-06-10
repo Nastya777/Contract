@@ -10,9 +10,13 @@
 	<title><spring:message code="label.title" /></title>
 </head>
 <body>
-<form:form method="post" action="edit" commandName="contract">
+<form:form method="post" action="/edit" commandName="contract">
 
 	<table>
+		<tr>
+			<td></td>
+			<td><form:input path="id" value="${contract.id}" hidden="true" /></td>
+		</tr>
 		<tr>
 			<td><form:label path="firstname">
 				<spring:message code="label.firstname" />
